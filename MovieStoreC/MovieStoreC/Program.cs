@@ -1,7 +1,11 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Mapster;
 using MovieStoreC.BL;
 using MovieStoreC.BL.Interfaces;
 using MovieStoreC.DL;
+using MovieStoreC.Models.configuration;
+using MovieStoreC.validatttor;
 
 namespace MovieStoreC
 {
@@ -17,9 +21,10 @@ namespace MovieStoreC
                 .RegisterServices();
 
             builder.Services.AddMapster();
-
+            builder.Services.Configure<MongoDbConfiguration>(builder.Configuration.GetSection("string.empty"));
             builder.Services.AddControllers();
-
+            builder.Services.AddValidatorsFromAssemblyContaining<testvalidator>();
+            builder.Services.AddFluentValidationAutoValidation();
             builder.Services.AddSwaggerGen();
 
             var app = builder.Build();

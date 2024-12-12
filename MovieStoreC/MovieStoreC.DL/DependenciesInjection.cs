@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using MovieStoreC.DL.Interfaces;
 using MovieStoreC.DL.Repositories;
+using MovieStoreC.DL.Repositories.MovieMongorepository;
 
 namespace MovieStoreC.DL
 {
@@ -12,7 +13,7 @@ namespace MovieStoreC.DL
             return
                 services
                     .AddSingleton<IMovieRepository,
-                        MovieStaticDataRepository>()
+                        MovieMongoRepository>()
                     .AddSingleton<IActorRepository,
                         ActorStaticDataRepository>();
         }
