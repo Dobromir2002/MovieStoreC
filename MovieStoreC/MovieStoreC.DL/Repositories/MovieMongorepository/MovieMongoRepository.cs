@@ -37,5 +37,23 @@ namespace MovieStoreC.DL.Repositories.MovieMongorepository
         {
             throw new NotImplementedException();
         }
+        public void Add(Movie? movie)
+        {
+            if (movie == null)
+            {
+                _logger.LogError("Movie is null");
+                return;
+            }
+
+            try
+            {
+                _movieCollection.InsertOne(movie);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError($"{e.Message}");
+            }
+        }
+
     }
 }
